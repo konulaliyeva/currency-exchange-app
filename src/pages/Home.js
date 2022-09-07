@@ -18,7 +18,7 @@ function Home() {
   const [toCurrency, setToCurrency] = useState();
   const [exchangeRate, setExchangeRate] = useState();
   const [amount, setAmount] = useState();
-  const [result, setResult] = useState(null);
+  const [convertion, setConvertion] = useState(null);
 
   let myHeaders = new Headers();
   myHeaders.append("apikey", "04IcXrzw9lncM0q3afqndVF0FBNC2WdM");
@@ -29,15 +29,7 @@ function Home() {
     headers: myHeaders,
   };
 
-  // let toAmount, fromAmount;
-  // if (amountInFromCurrency) {
-  //   fromAmount = amount;
-  //   toAmount = amount * exchangeRate;
-  // } else {
-  //   toAmount = amount;
-  //   fromAmount = amount / exchangeRate;
-  // }
-
+  
 
 
   useEffect(() => {
@@ -66,21 +58,20 @@ function Home() {
     )
       .then((res) => res.json())
       .then((data) => 
-      setResult(data));
+      setConvertion(data));
     }
 
 
-  // function handleFromAmountChange(e) {
-  //   setAmount(e.target.value);
-  //   // setAmountInFromCurrency(true);
-  // }
-
-  // function handleToAmountChange(e) {
-  //   setAmount(e.target.value);
-  //   // setAmountInFromCurrency(false);
-  // }
-
-
+ function handleSwapCurrencies(){
+  
+ fetch(
+      `https://api.apilayer.com/exchangerates_data/convert?to=${fromCurrency}&from=${toCurrency}&amount=${amount}`,
+      requestOptions
+    )
+      .then((res) => res.json())
+      .then((data) => 
+      setConvertion(data));
+ }
 
   return (
     <StyledContainer>
@@ -91,7 +82,7 @@ function Home() {
           onChangeCurrency={(e) => setFromCurrency(e.target.value)}
           // onChangeAmount={handleFromAmountChange}
         />
-        <IconButton>
+        <IconButton onClick={handleSwapCurrencies}>
           <SyncAltIcon sx={{color:'#0E57D6'}}/>
         </IconButton>
         <ExchangeInput
@@ -102,7 +93,7 @@ function Home() {
         />
       </StyledDiv>
       <StyledBox>
-        <AmountInput amount={amount} setAmount={setAmount} handleConvertCurrency={handleConvertCurrency} result={result}/>
+        <AmountInput amount={amount} setAmount={setAmount} handleConvertCurrency={handleConvertCurrency} convertion={convertion}/>
       </StyledBox>
       <StyledDiv direction="column">
         {currencies &&
