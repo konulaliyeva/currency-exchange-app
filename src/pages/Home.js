@@ -13,12 +13,11 @@ import SyncAltIcon from "@mui/icons-material/SyncAlt";
 function Home() {
   const [currencyOptions, setCurrencyOptions] = useState(null);
 
-  const [currencies, setCurrencies] = useState(null);
-  const [fromCurrency, setFromCurrency] = useState();
-  const [toCurrency, setToCurrency] = useState();
-  const [exchangeRate, setExchangeRate] = useState();
-  const [amount, setAmount] = useState();
-  const [convertion, setConvertion] = useState(null);
+  const [currencies, setCurrencies] = useState("");
+  const [fromCurrency, setFromCurrency] = useState("");
+  const [toCurrency, setToCurrency] = useState("");
+  const [amount, setAmount] = useState(100);
+  const [convertion, setConvertion] = useState("");
 
   useEffect(() => {
     const handleGetResult = async () => {
@@ -28,39 +27,36 @@ function Home() {
       setCurrencyOptions(...[Object.keys(data.rates)]);
       setFromCurrency(data.base);
       setToCurrency(firstCurrency);
-      setExchangeRate(data.rates[firstCurrency]);
       setCurrencies(data.rates);
     };
     handleGetResult();
   }, []);
 
   const handleConvertCurrency = async () => {
-  
     const params = { to: toCurrency, from: fromCurrency, amount };
-    
-  if(amount !== ''){
-    const data = await Server.getConvert(params);
-    setConvertion(data);
-   }
-   else{
-     alert('Duzgun bir shyeler yaz')
-     setAmount();
-     setConvertion();
-   }
-    
-
-    
+    if (amount) {
+      const data = await Server.getConvert(params);
+      setConvertion(data);
+    }
   };
+
+  useEffect(() => {
+    if (!amount) setConvertion(null);
+  }, [amount]);
 
   const handleSwapCurrencies = async () => {
-    //  fetch(
-    //       `https://api.apilayer.com/exchangerates_data/convert?to=${fromCurrency}&from=${toCurrency}&amount=${amount}`,
-    //       requestOptions
-    //     )
-    //       .then((res) => res.json())
-    //       .then((data) =>
-    //       setConvertion(data));
+    let from = toCurrency
+    setToCurrency(fromCurrency)
+    setFromCurrency(from)
+
+    const params = { to: fromCurrency, from: toCurrency, amount };
+    
+    if (amount) {
+      const data = await Server.getConvert(params);
+      setConvertion(data);
+    }
   };
+
 
   return (
     <StyledContainer>
