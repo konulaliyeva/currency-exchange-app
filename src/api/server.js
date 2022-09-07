@@ -1,9 +1,9 @@
 import api from './axios'
 
 class Server {
-  async getSymbols(){
+  async getSymbols(params){
     return await api
-      .get(`/latest`)
+      .get(`/latest`, {params})
       .then((response) => response.data)
   }
 

@@ -5,12 +5,12 @@ const axiosInstance = axios.create({
   timeout: 0,
   headers: {
     'Content-Type': 'application/json',
-    apikey: 'KkQKEgAuQnaZ5BIKR2oVzRHFzU1LQ6fk',
+    apikey: 'Hxyuo7EyhQCpqOXWosUW2XtvdBhGKREf',
   },
 })
 
 axiosInstance.interceptors.request.use((config) => {
-  axios.defaults.headers.apikey = 'KkQKEgAuQnaZ5BIKR2oVzRHFzU1LQ6fk'
+  axios.defaults.headers.apikey = 'Hxyuo7EyhQCpqOXWosUW2XtvdBhGKREf'
 
   return config
 })

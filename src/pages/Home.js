@@ -18,10 +18,11 @@ function Home() {
   const [toCurrency, setToCurrency] = useState("");
   const [amount, setAmount] = useState("");
   const [convertion, setConvertion] = useState("");
-
   useEffect(() => {
     const handleGetResult = async () => {
-      const data = await Server.getSymbols();
+      const params = { base: fromCurrency };
+      const data = await Server.getSymbols(params);
+
       const firstCurrency = Object.keys(data.rates)[0];
       setCurrencyOptions(...[Object.keys(data.rates)]);
       setFromCurrency(data.base);
@@ -29,12 +30,13 @@ function Home() {
       setCurrencies(data.rates);
     };
     handleGetResult();
-  }, []);
+  }, [fromCurrency]);
 
   const handleConvertCurrency = async () => {
     const params = { to: toCurrency, from: fromCurrency, amount };
     if (amount) {
       const data = await Server.getConvert(params);
+
       setConvertion(data);
     }
   };
@@ -52,6 +54,7 @@ function Home() {
 
     if (amount) {
       const data = await Server.getConvert(params);
+
       setConvertion(data);
     }
   };
@@ -86,7 +89,7 @@ function Home() {
           Object.entries(currencies).map(([key, value]) => {
             if (
               key === "USD" ||
-              key === "GEL" ||
+              key === "EUR" ||
               key === "RUB" ||
               key === "TRY"
             ) {

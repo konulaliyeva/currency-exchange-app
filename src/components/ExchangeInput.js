@@ -19,12 +19,12 @@ export default function ExchangeInput(props) {
         <Select
           value={selectedCurrency}
           onChange={onChangeCurrency}
-          sx={{ borderRadius: "20px" }}
+          sx={{ borderRadius: "20px"}}
           displayEmpty
         >
           {currencyOptions &&
             currencyOptions.map((curr) => (
-              <MenuItem key={curr} value={curr}>
+              <MenuItem key={curr} value={curr} >
                 {curr}
               </MenuItem>
             ))}
