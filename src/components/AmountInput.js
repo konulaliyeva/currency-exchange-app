@@ -7,13 +7,22 @@ import { IconButton, InputAdornment, Typography } from "@mui/material";
 import { StyledOutlinedInput } from "./StyledComponents";
 export default function AmountInput(props) {
   const { amount, setAmount, handleConvertCurrency, convertion } = props;
-  
+
   const textStyles = {
     margin: "22px 25px",
     fontFamily: "Roboto",
   };
+  const inputStyles = {
+    width: "96px",
+    borderRadius: "0px 10px 10px 0px",
+  };
+  const boxStyles = {
+    display: "flex",
+    flexWrap: "wrap",
+    marginLeft: "20px",
+  };
   return (
-    <Box sx={{ display: "flex", flexWrap: "wrap", marginLeft: "20px" }}>
+    <Box sx={{ ...boxStyles }}>
       <div>
         <Typography sx={{ ...textStyles }}>Amount</Typography>
 
@@ -29,6 +38,7 @@ export default function AmountInput(props) {
             <StyledOutlinedInput
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
+              required
             />
           </FormControl>
           <FormControl>
@@ -40,11 +50,14 @@ export default function AmountInput(props) {
                   </IconButton>
                 </InputAdornment>
               }
-              sx={{ width: "96px", borderRadius: "0px 10px 10px 0px" }}
+              sx={{ ...inputStyles }}
             />
           </FormControl>
         </div>
-        <Typography sx={{ ...textStyles }}>{convertion && convertion.result.toFixed(2) + '  ' + convertion.query.to}</Typography>
+        <Typography sx={{ ...textStyles }}>
+          {convertion &&
+            convertion.result.toFixed(2) + "  " + convertion.query.to}
+        </Typography>
       </div>
     </Box>
   );
