@@ -35,10 +35,21 @@ function Home() {
   }, []);
 
   const handleConvertCurrency = async () => {
+  
     const params = { to: toCurrency, from: fromCurrency, amount };
+    
+  if(amount !== ''){
     const data = await Server.getConvert(params);
-    console.log("dataanaaanaan  " + data);
     setConvertion(data);
+   }
+   else{
+     alert('Duzgun bir shyeler yaz')
+     setAmount();
+     setConvertion();
+   }
+    
+
+    
   };
 
   const handleSwapCurrencies = async () => {
