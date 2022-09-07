@@ -7,7 +7,7 @@ import { IconButton, InputAdornment, Typography } from "@mui/material";
 import { StyledOutlinedInput } from "./StyledComponents";
 export default function AmountInput(props) {
   const { amount, setAmount, handleConvertCurrency, result } = props;
-
+  
   const textStyles = {
     margin: "22px 25px",
     fontFamily: "Roboto",
@@ -44,7 +44,7 @@ export default function AmountInput(props) {
             />
           </FormControl>
         </div>
-        <Typography sx={{ ...textStyles }}>{result.result.toFixed(2)} {result.query.to}</Typography>
+        <Typography sx={{ ...textStyles }}>{result.result.toFixed(2)+ ' ' +result.query.to} </Typography>
       </div>
     </Box>
   );

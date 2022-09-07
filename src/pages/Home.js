@@ -39,7 +39,6 @@ function Home() {
   // }
 
 
- 
 
   useEffect(() => {
     fetch(
@@ -55,11 +54,11 @@ function Home() {
         setFromCurrency(data.base);
         setToCurrency(firstCurrency);
         setExchangeRate(data.rates[firstCurrency]);
-        setCurrencies(data.rates)
+        setCurrencies( data.rates)
       });
    }, []);
- function handleConvertCurrency(){  
 
+ function handleConvertCurrency(){  
 
     fetch(
       `https://api.apilayer.com/exchangerates_data/convert?to=${toCurrency}&from=${fromCurrency}&amount=${amount}`,
@@ -109,7 +108,7 @@ function Home() {
         {currencies &&
           Object.entries(currencies).map(([key, value]) => {
             if(key==='USD'||key==='EUR'||key==='RUB'||key==='TRY'){
-            return <Currency base={key} rates={value} key={key} />;
+            return <Currency base={key} rates={value} key={key} amount={amount} />;
 }})}
       </StyledDiv>
     </StyledContainer>

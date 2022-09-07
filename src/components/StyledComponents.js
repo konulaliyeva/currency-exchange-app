@@ -27,6 +27,7 @@ export const StyledCurrency = styled("div")`
   box-shadow: 3px 3px 10px rgba(14, 87, 214, 0.26);
   padding: 18px;
   border-radius: 20px;
+  margin-top: 15px;
   border: none;
   display: flex;
   justify-content: space-between;

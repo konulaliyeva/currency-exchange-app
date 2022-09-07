@@ -1,19 +1,19 @@
 import { Typography } from "@mui/material";
 import { StyledCurrency } from "./StyledComponents";
 import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
-const fontStyles = {
+export const fontStyles = {
 fontFamily: 'Roboto',
 fontSize: '16px',
 color:'#253D35'
 }
 export default function Currency(props) {
+  const {base, rates, amount} = props;
   return (
     <StyledCurrency>
       <div style={{display:'flex'}}>
-        <CurrencyRubleIcon sx={{...fontStyles, fontSize: 23}} />
-        <Typography sx={{...fontStyles, mx:4}}>{props.base}</Typography>
+        <Typography sx={{...fontStyles, mx:4}}>{base}</Typography>
       </div>
-      <Typography sx={{...fontStyles}}>{props.rates.toFixed(2)}</Typography>
+      <Typography sx={{...fontStyles}}>{(rates*amount).toFixed(2)}</Typography>
     </StyledCurrency>
   );
 }
