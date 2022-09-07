@@ -13,7 +13,7 @@ export default function Currency(props) {
         <CurrencyRubleIcon sx={{...fontStyles, fontSize: 23}} />
         <Typography sx={{...fontStyles, mx:4}}>{props.base}</Typography>
       </div>
-      <Typography sx={{...fontStyles}}>{props.rates}</Typography>
+      <Typography sx={{...fontStyles}}>{props.rates.toFixed(2)}</Typography>
     </StyledCurrency>
   );
 }

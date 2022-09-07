@@ -6,7 +6,7 @@ import SyncIcon from "@mui/icons-material/Sync";
 import { IconButton, InputAdornment, Typography } from "@mui/material";
 import { StyledOutlinedInput } from "./StyledComponents";
 export default function AmountInput(props) {
-  const { amount, setAmount } = props;
+  const { amount, setAmount, handleConvertCurrency, result } = props;
 
   const textStyles = {
     margin: "22px 25px",
@@ -35,7 +35,7 @@ export default function AmountInput(props) {
             <OutlinedInput
               startAdornment={
                 <InputAdornment position="start">
-                  <IconButton>
+                  <IconButton onClick={handleConvertCurrency}>
                     <SyncIcon sx={{ color: "#0E57D6", marginLeft: "10px" }} />
                   </IconButton>
                 </InputAdornment>
@@ -44,7 +44,7 @@ export default function AmountInput(props) {
             />
           </FormControl>
         </div>
-        <Typography sx={{ ...textStyles }}> Result</Typography>
+        <Typography sx={{ ...textStyles }}>{result.result.toFixed(2)} {result.query.to}</Typography>
       </div>
     </Box>
   );
