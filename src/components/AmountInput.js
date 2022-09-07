@@ -38,7 +38,6 @@ export default function AmountInput(props) {
             <StyledOutlinedInput
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              required
             />
           </FormControl>
           <FormControl>
